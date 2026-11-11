@@ -180,7 +180,40 @@
     </section>
   </div>
 
-  
+  <div class="modal-backdrop hidden" id="projectBackdrop">
+    <section class="modal compact-modal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <button class="modal-close" type="button" data-close="projectBackdrop" aria-label="Close"><svg class="icon" width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg></button>
+      <h2 id="projectModalTitle">Create a project</h2>
+      <form id="projectForm">
+        <label class="field-label">Project name<input name="name" required maxlength="40" placeholder="e.g. Product launch"></label>
+        <fieldset class="seg-field">
+          <legend>Color</legend>
+          <div class="swatches" id="swatches">
+            <label class="swatch" style="--c:#6c76df"><input type="radio" name="color" value="#6c76df" checked><span title="Cobalt"></span><b class="sr-only">Cobalt</b></label>
+            <label class="swatch" style="--c:#d58b69"><input type="radio" name="color" value="#d58b69"><span title="Coral"></span><b class="sr-only">Coral</b></label>
+            <label class="swatch" style="--c:#4f9c7f"><input type="radio" name="color" value="#4f9c7f"><span title="Mint"></span><b class="sr-only">Mint</b></label>
+            <label class="swatch" style="--c:#a276bd"><input type="radio" name="color" value="#a276bd"><span title="Violet"></span><b class="sr-only">Violet</b></label>
+            <label class="swatch" style="--c:#5192a0"><input type="radio" name="color" value="#5192a0"><span title="Sky"></span><b class="sr-only">Sky</b></label>
+            <label class="swatch" style="--c:#bc9a52"><input type="radio" name="color" value="#bc9a52"><span title="Amber"></span><b class="sr-only">Amber</b></label>
+          </div>
+        </fieldset>
+        <div class="form-actions"><button type="button" class="secondary-button" data-close="projectBackdrop">Cancel</button><button class="primary-button">Create project</button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="settingsBackdrop">
+    <section class="modal compact-modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <button class="modal-close" type="button" data-close="settingsBackdrop" aria-label="Close"><svg class="icon" width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg></button>
+      <h2 id="settingsTitle">Settings</h2>
+      <div class="settings-option"><div><strong>Clear all tasks</strong><p>Remove every task from this workspace.</p></div><button class="secondary-button danger-button" id="resetDataButton" type="button">Clear tasks</button></div>
+      <div class="settings-option"><div><strong>Load sample tasks</strong><p>Add the original Taskflow examples back.</p></div><button class="secondary-button" id="loadSampleButton" type="button">Load samples</button></div>
+      <div class="settings-option"><div><strong>Keyboard shortcuts</strong><p><kbd>N</kbd> new task, <kbd>/</kbd> search, <kbd>V</kbd> switch list or board, <kbd>Esc</kbd> close.</p></div></div>
+      <div class="form-actions"><button class="primary-button" type="button" data-close="settingsBackdrop">Done</button></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-check"/></svg><span id="toastMessage">Saved</span><button class="toast-action hidden" id="toastAction" type="button">Undo</button></div>
   <script src="app.js"></script>
 </body>
 </html>
