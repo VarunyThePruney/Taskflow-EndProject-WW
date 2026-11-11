@@ -74,8 +74,7 @@
     font: 600 11px var(--font-body); opacity: .7;
   }
   
-  /* ---------------------------------------------------------------- Sidebar */
-  
+
   .sidebar {
     position: fixed; inset: 0 auto 0 0; z-index: 30;
     width: var(--sidebar-w);
@@ -135,3 +134,53 @@
   }
   .icon-action:hover { background: var(--side-hover); color: #fff; }
   
+  .project { position: relative; display: flex; align-items: center; border-radius: 9px; }
+.project:hover { background: var(--side-hover); }
+.project.active { background: var(--side-hover); }
+
+.project-main {
+  display: flex; align-items: center; gap: 11px;
+  flex: 1; min-width: 0; height: 40px; padding: 0 10px;
+  border: 0; border-radius: 9px; background: transparent;
+  color: var(--side-muted); text-align: left; font-size: 14px; font-weight: 500;
+}
+.project:hover .project-main, .project.active .project-main { color: var(--side-ink); }
+.project-main > span:nth-child(2) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; margin: 0 4px; background: var(--c); }
+.project-count { min-width: 22px; padding: 1px 7px; color: var(--side-muted); font-size: 12px; font-weight: 600; text-align: center; }
+.project-delete {
+  position: absolute; right: 6px; top: 7px;
+  display: grid; place-items: center;
+  width: 26px; height: 26px; padding: 0;
+  border: 0; border-radius: 7px; background: transparent; color: var(--side-muted);
+  opacity: 0; transition: opacity .15s;
+}
+.project:hover .project-delete, .project:focus-within .project-delete { opacity: 1; }
+.project-delete:hover { background: var(--side-line); color: #ff9aa2; }
+.project:hover .project-count, .project:focus-within .project-count { visibility: hidden; }
+
+.sidebar-bottom { margin-top: auto; padding-top: 18px; display: grid; gap: 2px; border-top: 1px solid var(--side-line); }
+
+.scrim { display: none; }
+
+/* ------------------------------------------------------------------ Main */
+
+.main-content { margin-left: var(--sidebar-w); min-height: 100vh; }
+.content-wrap { width: min(1120px, 100%); margin: 0 auto; padding: 56px 48px 24px; }
+.topbar { display: none; }
+
+/* ------------------------------------------------------------------ Hero */
+
+.hero { margin-bottom: 52px; }
+.hero-date { margin-bottom: 14px; color: var(--muted); font-size: 15px; font-weight: 500; }
+
+.hero-title {
+  max-width: 15em;
+  font: 800 clamp(40px, 6.2vw, 76px)/1.02 var(--font-display);
+  font-stretch: 88%;
+  font-optical-sizing: auto;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.hero-hello, .hero-status { display: block; }
+.hero-status { color: var(--faint); }
