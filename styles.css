@@ -184,3 +184,69 @@
 }
 .hero-hello, .hero-status { display: block; }
 .hero-status { color: var(--faint); }
+
+/* The flow bar: one segment per status, sized by how many tasks sit in it. */
+.flow {
+  position: relative;
+  display: flex; gap: 6px;
+  height: 60px; margin-top: 34px;
+}
+.flow-seg {
+  position: relative;
+  flex: var(--n, 0) 1 0;
+  min-width: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 0 18px;
+  border: 0; border-radius: 16px;
+  overflow: hidden; white-space: nowrap;
+  text-align: left;
+  transition: flex-grow .6s cubic-bezier(.3, .7, .2, 1), opacity .2s, box-shadow .2s;
+  animation: flow-in 1s cubic-bezier(.2, .8, .2, 1) both;
+}
+.flow-seg:nth-child(2) { animation-delay: .08s; }
+.flow-seg:nth-child(3) { animation-delay: .16s; }
+.flow-seg.has-tasks { min-width: 104px; }
+.flow-seg:not(.has-tasks) { padding: 0; pointer-events: none; }
+.flow-seg.todo { background: var(--todo); color: var(--on-todo); }
+.flow-seg.doing { background: var(--doing); color: var(--on-doing); }
+.flow-seg.done { background: var(--done); color: var(--on-done); }
+.flow-name { overflow: hidden; text-overflow: ellipsis; font-size: 14px; font-weight: 600; }
+.flow-count { font: 800 26px/1 var(--font-display); letter-spacing: -.03em; }
+.flow-seg:hover { box-shadow: 0 8px 24px -10px currentColor; }
+.flow-seg.active { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--ink); }
+.flow[data-filter="todo"] .flow-seg:not(.todo),
+.flow[data-filter="in-progress"] .flow-seg:not(.doing),
+.flow[data-filter="completed"] .flow-seg:not(.done) { opacity: .4; }
+
+/* Diagonal stripes drift through the "in progress" segment: the one thing that moves. */
+.flow-seg.doing::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(115deg, rgba(255, 255, 255, .22) 0 10px, transparent 10px 22px);
+  background-size: 44px 100%;
+  opacity: .8;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .flow-seg.doing::after { animation: drift 2.4s linear infinite; }
+}
+@keyframes drift { to { background-position: 44px 0; } }
+@keyframes flow-in { from { flex-grow: .001; opacity: 0; } }
+
+.flow-empty {
+  display: none;
+  position: absolute; inset: 0;
+  align-items: center; justify-content: center;
+  border: 2px dashed var(--line-strong); border-radius: 16px;
+  color: var(--muted); font-weight: 500;
+}
+.flow.is-empty .flow-seg { display: none; }
+.flow.is-empty .flow-empty { display: flex; }
+
+.hero-foot { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-top: 14px; color: var(--muted); font-size: 14px; }
+.hero-summary { font-weight: 500; white-space: nowrap; }
+.next-up {
+  min-width: 0; max-width: 60ch; padding: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  border: 0; background: none; color: var(--muted); font-size: 14px; text-align: right;
+}
+.next-up strong { color: var(--ink); font-weight: 600; }
+.next-up:hover strong { text-decoration: underline; text-underline-offset: 3px; }
