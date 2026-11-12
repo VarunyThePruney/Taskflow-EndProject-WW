@@ -68,8 +68,19 @@
     <main class="main-content">
       <!--init topbar-->
       <header class="topbar">
+        <button class="topbar-btn" id="mobileMenu" type="button" aria-label="Open sidebar">
+          <svg class="icon" width="22" height="22" aria-hidden="true">
+            <use href="#i-menu"/>
+          </svg>
+        </button>
+      
         <span class="topbar-brand">taskflow</span>
-        <button class="topbar-btn topbar-add" id="introNewTask" type="button" aria-label="New task"><svg class="icon" width="20" height="20" aria-hidden="true"><use href="#i-plus"/></svg></button>
+      
+        <button class="topbar-btn topbar-add" id="introNewTask" type="button" aria-label="New task">
+          <svg class="icon" width="20" height="20" aria-hidden="true">
+            <use href="#i-plus"/>
+          </svg>
+        </button>
       </header>
       <!--date and greeting, modified by js-->
       <div class="content-wrap">
