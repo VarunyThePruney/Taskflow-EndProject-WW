@@ -837,8 +837,10 @@ $('#clearFilters').addEventListener('click', () => { clearFilters(); render(); }
 $('#addProject').addEventListener('click', () => { closeSidebar(); openModal('projectBackdrop'); $('#projectForm').elements.name.focus(); });
 $('#settingsButton').addEventListener('click', () => { closeSidebar(); openModal('settingsBackdrop'); });
 //side bar buttons
-$('#mobileMenu').addEventListener('click', () => { $('#sidebar').classList.add('open'); $('#scrim').classList.add('show'); });
-$('#scrim').addEventListener('click', closeSidebar);
+const mobileMenu = $('#mobileMenu');
+if (mobileMenu) mobileMenu.addEventListener('click', () => { $('#sidebar').classList.add('open'); $('#scrim').classList.add('show'); });
+const scrim = $('#scrim');
+if (scrim) scrim.addEventListener('click', closeSidebar);
 //closing modal buttons:
 $$('[data-close]').forEach((button) => button.addEventListener('click', () => close(button.dataset.close)));
 
